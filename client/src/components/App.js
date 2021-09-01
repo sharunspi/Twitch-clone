@@ -6,13 +6,17 @@ import StreamEdit from './streams/StreamEdit'
 import StreamShow from './streams/StreamShow'
 import StreamCreate from './streams/StreamCreate'
 import Header from './header'
+import Login from './login'
+
 export default function App() {
     
     return (
         <div>
-            <Header />
+        
             <BrowserRouter>
+            <Header />
             <Route path='/' exact component={StreamList}/>
+            <Route path='/login' exact component={Login}/>
             <Route path='/streams/show' exact component={StreamShow}/>
             <Route path='/streams/edit' exact component={StreamEdit}/>
             <Route path='/streams/new' exact component={StreamCreate}/>

@@ -2,19 +2,22 @@ import React from 'react'
 import {
     Navbar,
     Container,
-    Nav
+    Nav,
+    Button
 } from 'react-bootstrap'
-
+import { Link } from 'react-router-dom'
 
 export default function Header() {
     return (
         <Navbar bg="primary" variant="dark">
         <Container>
-        <Navbar.Brand >Navbar</Navbar.Brand>
+        <Link to='/'>
+          <Navbar.Brand > Streams  </Navbar.Brand>
+        </Link>
         <Nav className="me-auto">
-          <Nav.Link >Home</Nav.Link>
-          <Nav.Link >Features</Nav.Link>
-          <Nav.Link >Pricing</Nav.Link>
+         <Link to='/login'>
+          <Button color='info'>Login</Button>  
+         </Link>
         </Nav>
         </Container>
       </Navbar>
