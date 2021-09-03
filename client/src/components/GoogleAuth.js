@@ -18,8 +18,13 @@ export default class GoogleAuth extends Component {
                 this.setState({
                     isSignedIn: this.auth.isSignedIn.get()
                 })
+                this.auth.isSignedIn.listen(this.onAuthChange)
             }).catch(err => console.log(err))
         })
+    }
+
+    onAuthChange = () => {
+        this.setState({ isSignedIn:this.auth.isSignedIn.get() })
     }
 
     renderAuthButton(){
