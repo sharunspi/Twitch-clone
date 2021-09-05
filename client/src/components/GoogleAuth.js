@@ -29,11 +29,11 @@ export default class GoogleAuth extends Component {
         this.setState({ isSignedIn:this.auth.isSignedIn.get() })
     }
 
-    onSignIn = () => {
+    onSignInClick = () => {
         this.auth.signIn()
     }
 
-    onSignOut = () => {
+    onSignOutClick = () => {
         this.auth.signOut()
     }
 
@@ -41,9 +41,9 @@ export default class GoogleAuth extends Component {
         if (this.state.isSignedIn === null)
          return <div> I don't know </div>
         else if (this.state.isSignedIn)
-         return <Button onClick={this.onSignOut}> Sign Out </Button>
+         return <Button onClick={this.onSignOutClick}> Sign Out </Button>
         else 
-         return <Button onClick={this.onSignIn}> Sign In </Button> 
+         return <Button onClick={this.onSignInClick}> Sign In </Button> 
     }
 
 
