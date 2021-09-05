@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { googleAPI,googleScope } from '../config'
 import {
     Button
 } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
-export default class GoogleAuth extends Component {
+import { signIn,signOut } from '../actions'
+import { googleAPI,googleScope } from '../config'
 
-    state = {
-        isSignedIn: null
-    }
+class GoogleAuth extends Component {
+
 
     componentDidMount(){
         window.gapi.load('client:auth2',() => {
@@ -17,17 +17,14 @@ export default class GoogleAuth extends Component {
                 scope: googleScope
             }).then(() => {
                 this.auth = window.gapi.auth2.getAuthInstance() 
-                this.setState({
-                    isSignedIn: this.auth.isSignedIn.get()
-                })
+                this.onAuthChange(this.auth.isSignedIn.get())
                 this.auth.isSignedIn.listen(this.onAuthChange)
             }).catch(err => console.log(err))
         })
     }
 
-    onAuthChange = () => {
-        this.setState({ isSignedIn:this.auth.isSignedIn.get() })
-    }
+    onAuthChange = isSignedIn =>  isSignedIn ? this.props.signIn() : this.props.signOut()
+    
 
     onSignInClick = () => {
         this.auth.signIn()
@@ -38,9 +35,9 @@ export default class GoogleAuth extends Component {
     }
 
     renderAuthButton(){
-        if (this.state.isSignedIn === null)
+        if (this.props.isSignedIn === null)
          return <div> I don't know </div>
-        else if (this.state.isSignedIn)
+        else if (this.props.isSignedIn)
          return <Button onClick={this.onSignOutClick}> Sign Out </Button>
         else 
          return <Button onClick={this.onSignInClick}> Sign In </Button> 
@@ -56,3 +53,14 @@ export default class GoogleAuth extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        isSignedIn: state.auth.isSignedIn
+    }
+}
+
+export default connect(mapStateToProps, {
+    signIn,
+    signOut
+})(GoogleAuth)
