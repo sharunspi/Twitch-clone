@@ -5,13 +5,14 @@ import {Form, Col, Row, Button} from 'react-bootstrap'
 
 class StreamCreate extends Component {
 
-    renderInputs({ input, label, meta }) {
+    renderInputs({input, label, meta}) {
         return <div>
-            <Form.Label> { label } </Form.Label>
+            <Form.Label> {label} </Form.Label>
             <Form.Control { ...input } autoComplete='off'/>
             <Form.Text className="text-muted">
-                { meta.touched && meta.error }
-            </Form.Text>
+                {
+                meta.touched && meta.error
+            } </Form.Text>
         </div>
     }
 
@@ -23,10 +24,12 @@ class StreamCreate extends Component {
     render() {
         return (
             <div>
-                <Form onSubmit={this.props.handleSubmit(this.onSubmit)} >
+                <Form onSubmit={
+                    this.props.handleSubmit(this.onSubmit)
+                }>
                     <Row>
                         <Col>
-                            <Form.Group className="mb-3 m-2" controlId="formBasicEmail">
+                            <Form.Group className="m-3" controlId="formBasicEmail">
                                 <Field name='stream_name' label='Stream name' placeholder='Type stream name' type='text'
                                     component={
                                         this.renderInputs
@@ -34,19 +37,17 @@ class StreamCreate extends Component {
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group className="mb-3 m-2" controlId="formBasicEmail">
+                            <Form.Group className="m-3" controlId="formBasicEmail">
                                 <Field name='stream_description' label='Stream Description' placeholder='Type stream description' type='text'
                                     component={
                                         this.renderInputs
                                     }/>
                             </Form.Group>
                         </Col>
-                        <Col lg={2}>
-                            <Button type='submit'>
-                                Create
-                            </Button>        
-                        </Col>
                     </Row>
+                    <Button type='submit' className='m-2'>
+                        Create
+                    </Button>
                 </Form>
             </div>
         )
@@ -56,18 +57,15 @@ class StreamCreate extends Component {
 const validate = formValues => {
     const errors = {}
 
-    if(!formValues.stream_name){
+    if (!formValues.stream_name) {
         errors.stream_name = 'You must enter a title'
     }
 
-    if(!formValues.stream_description){
+    if (!formValues.stream_description) {
         errors.stream_description = 'You must enter a description'
     }
 
     return errors
 }
 
-export default reduxForm({
-    form: 'streamCreate',
-    validate
-})(StreamCreate)
+export default reduxForm({form: 'streamCreate', validate})(StreamCreate)
