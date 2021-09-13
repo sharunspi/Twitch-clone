@@ -9,8 +9,7 @@ router.post('/', function(req, res, next) {
     if(err){
       return console.log(err)
     }
-    console.log(stream)
-    res.send('completed')
+    res.send(stream)
   })
 });
 
