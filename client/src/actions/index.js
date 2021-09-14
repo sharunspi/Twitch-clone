@@ -1,4 +1,3 @@
-import { formValues } from 'redux-form'
 import streams from '../apis/streams'
 import { SIGN_IN, SIGN_OUT, CREATE_STREAM, FETCH_STREAM, FETCH_STREAMS, DELETE_STREAM, EDIT_STREAM } from "./types"
 
