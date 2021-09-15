@@ -14,7 +14,13 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  res.send('hai')
+  streamsSchema.find({}, (err, result) => {
+    if(err){
+      res.send(err)
+    }else{
+      res.send(result)
+    }
+  })
 });
 
 
