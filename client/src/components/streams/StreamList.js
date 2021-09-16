@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card, Container, Row, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import { fetchStreams } from '../../actions'
 
@@ -31,6 +32,19 @@ class StreamList extends Component {
         })
     }
 
+    renderCreateStreamButton(){
+        console.log(this.props)
+        if(this.props.isSignedIn){
+            return <Row className='mt-2 mb-2'>
+            <Link to='/streams/new'>
+            <Button variant='info'>
+                 Create a new stream
+             </Button>
+            </Link>
+         </Row>
+        }  
+    }
+
     render(){
         return (
             <div>
@@ -41,6 +55,9 @@ class StreamList extends Component {
                             this.renderList()
                         }
                     </Row>
+                   {
+                       this.renderCreateStreamButton()
+                   }
                 </Container>
             </div>
         )
@@ -50,7 +67,8 @@ class StreamList extends Component {
 const mapStateToProps = state => {
     return {
         streams: Object.values(state.streams),
-        currentUserId: state.auth.userId
+        currentUserId: state.auth.userId,
+        isSignedIn: state.auth.isSignedIn
     }
 }
 
