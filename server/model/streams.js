@@ -2,7 +2,8 @@ const { Schema, model } = require('mongoose')
 
 const streamsSchema =  new Schema({
     title:String,
-    description:String
+    description:String,
+    userId:String
 },{
     timestamps:true
 })

@@ -8,7 +8,6 @@ export default function Login() {
     const [showGoogle,setShowGoogle] = useState(false)
 
     const showGoogleAuth = () =>  {
-        console.log('hai')
         setShowGoogle(!showGoogle)
     }
 

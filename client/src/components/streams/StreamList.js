@@ -10,14 +10,22 @@ class StreamList extends Component {
         this.props.fetchStreams()
     }
 
+    renderAuthButtons(stream){
+        if( stream.userId === this.props.currentUserId ) {
+            return <>
+              <Button className='m-1' variant='primary' > Edit </Button>
+              <Button className='m-1' variant='danger' > Delete </Button>
+            </>
+        }
+    }
+
     renderList(){
         return this.props.streams.map(stream => {
             return <Card style={{ width: '18rem',margin:'6px' }} key={stream._id}>
             <Card.Body>
               <Card.Title> { stream.title } </Card.Title>
               <Card.Subtitle className="mb-2 text-muted">  { stream.description } </Card.Subtitle>
-              <Button className='m-1' variant='primary' > Edit </Button>
-              <Button className='m-1' variant='danger' > Delete </Button>
+                { this.renderAuthButtons(stream) }
             </Card.Body>
           </Card>
         })
@@ -41,7 +49,8 @@ class StreamList extends Component {
 
 const mapStateToProps = state => {
     return {
-        streams: Object.values(state.streams)
+        streams: Object.values(state.streams),
+        currentUserId: state.auth.userId
     }
 }
 
