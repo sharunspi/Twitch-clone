@@ -14,7 +14,9 @@ class StreamList extends Component {
     renderAuthButtons(stream){
         if( stream.userId === this.props.currentUserId ) {
             return <>
-              <Button className='m-1' variant='primary' > Edit </Button>
+              <Link to={`/streams/edit/${stream._id}`}>
+                <Button className='m-1' variant='primary' > Edit </Button>
+              </Link>
               <Button className='m-1' variant='danger' > Delete </Button>
             </>
         }
