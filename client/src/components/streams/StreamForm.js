@@ -44,7 +44,7 @@ class StreamForm extends Component {
                         </Col>
                     </Row>
                     <Button type='submit' className='m-2'>
-                        Create
+                        {this.props.buttonText}
                     </Button>
                 </Form>
             </div>

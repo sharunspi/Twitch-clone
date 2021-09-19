@@ -14,7 +14,7 @@ class StreamCreate extends Component {
         return (
             <div>
                 <h3> Create Stream </h3>
-                <StreamForm onSubmit={this.onSubmit} />
+                <StreamForm buttonText='Create' onSubmit={this.onSubmit} />
             </div>
         )
     }
