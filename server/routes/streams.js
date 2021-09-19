@@ -23,6 +23,16 @@ router.get('/', function(req, res, next) {
   })
 });
 
+router.get('/:id', function(req, res, next) {
+  streamsSchema.findOne({_id:req.params.id}, (err, result) => {
+    if(err){
+      res.send(err)
+    }else{
+      res.send(result)
+    }
+  })
+});
+
 
 
 module.exports = router;
