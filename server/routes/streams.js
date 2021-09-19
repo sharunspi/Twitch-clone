@@ -33,7 +33,7 @@ router.get('/:id', function(req, res, next) {
   })
 });
 
-router.put('/:id', function(req, res, next) {
+router.patch('/:id', function(req, res, next) {
   streamsSchema.findByIdAndUpdate({_id:req.params.id}, req.body,{ upsert: true }, (err, result) => {
     if(err){
       res.send(err)
@@ -44,5 +44,15 @@ router.put('/:id', function(req, res, next) {
   })
 });
 
+router.delete('/:id', function(req, res, next) {
+  streamsSchema.findByIdAndDelete({_id:req.params.id}, (err, result) => {
+    if(err){
+      res.send(err)
+    }else{
+      console.log(result)
+      res.send(result)
+    }
+  })
+});
 
 module.exports = router;
