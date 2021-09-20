@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import ReactDOM from 'react-dom'
+import { Link } from 'react-router-dom'
 
 const ModalDisplay = props => {
     return <Modal.Dialog>
@@ -13,8 +14,10 @@ const ModalDisplay = props => {
     </Modal.Body>
   
     <Modal.Footer>
+      <Link to="/">
       <Button variant="secondary">{props.secondaryButtonText}</Button>
-      <Button variant={props.primaryButtonColorType}>{props.primaryButtonText}</Button>
+      </Link>
+      <Button onClick={() => props.onSubmit() } variant={props.primaryButtonColorType}>{props.primaryButtonText}</Button>
     </Modal.Footer>
   </Modal.Dialog>
 }

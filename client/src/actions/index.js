@@ -61,4 +61,5 @@ export const fetchStreams = () => async dispatch => {
          type: DELETE_STREAM,
          payload: id
      })
+     history.push('/')
  }

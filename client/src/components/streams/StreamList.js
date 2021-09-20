@@ -17,7 +17,9 @@ class StreamList extends Component {
               <Link to={`/streams/edit/${stream._id}`}>
                 <Button className='m-1' variant='primary' > Edit </Button>
               </Link>
-              <Button className='m-1' variant='danger' > Delete </Button>
+              <Link to={`/streams/delete/${stream._id}`}>
+                <Button className='m-1' variant='danger' > Delete </Button>
+              </Link>
             </>
         }
     }
