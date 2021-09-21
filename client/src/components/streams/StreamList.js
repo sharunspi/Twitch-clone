@@ -28,7 +28,9 @@ class StreamList extends Component {
         return this.props.streams.map(stream => {
             return <Card style={{ width: '18rem',margin:'6px' }} key={stream._id}>
             <Card.Body>
+              <Link to={`/streams/${stream._id}`}>
               <Card.Title> { stream.title } </Card.Title>
+              </Link>
               <Card.Subtitle className="mb-2 text-muted">  { stream.description } </Card.Subtitle>
                 { this.renderAuthButtons(stream) }
             </Card.Body>
