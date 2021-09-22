@@ -1,6 +1,6 @@
-#Twitch Clone
+# Twitch Clone
 
-##setup OBS studio
+## setup OBS studio
 
 Stream Type : Custom Streaming Server
 
