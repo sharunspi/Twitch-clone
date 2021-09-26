@@ -4,9 +4,12 @@ import { Card, Container, Row, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import { fetchStreams } from '../../actions'
+import modeContext from '../../context/modeContext'
 
 class StreamList extends Component {
     
+    static contextType = modeContext
+
     componentDidMount(){
         this.props.fetchStreams()
     }
@@ -26,7 +29,7 @@ class StreamList extends Component {
 
     renderList(){
         return this.props.streams.map(stream => {
-            return <Card style={{ width: '18rem',margin:'6px' }} key={stream._id}>
+            return <Card bg={this.context === 'moon' ? "dark":"light"} style={{ width: '18rem',margin:'6px' }} key={stream._id}>
             <Card.Body>
               <Link to={`/streams/${stream._id}`}>
               <Card.Title> { stream.title } </Card.Title>
@@ -39,7 +42,6 @@ class StreamList extends Component {
     }
 
     renderCreateStreamButton(){
-        console.log(this.props)
         if(this.props.isSignedIn){
             return <Row className='mt-2 mb-2'>
             <Link to='/streams/new'>

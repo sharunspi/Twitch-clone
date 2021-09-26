@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Router, Route, Switch} from 'react-router-dom'
 
 import StreamList from './streams/StreamList'
@@ -9,17 +9,28 @@ import StreamCreate from './streams/StreamCreate'
 import Header from './header'
 import Login from './login'
 import history from '../history'
+import modeContext from '../context/modeContext'
 
-export default function App() {
-
+export default function App(props) {
+    const [mode, setMode] = useState('sun')
+    const setOnModeChange = (value) =>{
+        setMode(value)
+    }
+    const streamListUpdated = () => {
+        return  <modeContext.Provider value={mode}>
+        <StreamList />
+    </modeContext.Provider>
+    }
     return (
         <div>
 
             <Router history={history}>
-                <Header/>
+                <Header onModeChange={setOnModeChange}/>
                 <Switch>
                     <Route path='/' exact
-                        component={StreamList}/>
+                        component={
+                           streamListUpdated
+                        }/>
                     <Route path='/login' exact
                         component={Login}/>
                     <Route path='/streams/edit/:id' exact

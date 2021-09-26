@@ -1,20 +1,19 @@
-import React, {useContext, useState} from 'react'
+import React, { useState} from 'react'
 import {Navbar, Container, Nav, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {MoonStarsFill, SunFill} from 'react-bootstrap-icons'
-import modeContext from '../../context/modeContext'
 
 const Header = (props) => {
-    const context = useContext(modeContext)
     const [mode, setMode] = useState('sun')
 
     const onModeChange = modeChange => {
         setMode(modeChange)
+        props.onModeChange(modeChange)
     }
     return (
         <Navbar bg={
-                context === 'sun' ? "primary" : "dark"
+                mode === 'sun' ? "primary" : "dark"
             }
             variant="dark">
             <Container>
@@ -24,7 +23,7 @@ const Header = (props) => {
                     </Navbar.Brand>
                 </Link>
                 <Nav> {
-                    context === 'sun' ? <MoonStarsFill size={28}
+                    mode === 'sun' ? <MoonStarsFill size={28}
                         className="m-2 cursor-pointer"
                         style={
                             {cursor: 'pointer'}
@@ -37,7 +36,7 @@ const Header = (props) => {
                         }
                         className="m-2 cursor-pointer text-white"
                         onClick={
-                            () => onModeChange('moon')
+                            () => onModeChange('sun')
                         }/>
                 }
                     <Link to='/login'>
